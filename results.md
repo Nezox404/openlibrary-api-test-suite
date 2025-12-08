@@ -1,5 +1,4 @@
 # RESULTS — OpenLibrary API Testing  
-Источник: results.txt :contentReference[oaicite:2]{index=2}
 
 ## TC-FUNC-01  
 200 OK — PASSED
@@ -79,4 +78,5 @@ JSON возвращает строку, JS не выполняется — PASSE
 
 ## TC-ISBN-03  
 404 — PASSED
+
 

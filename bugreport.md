@@ -1,5 +1,4 @@
 # BUGREPORTS — OpenLibrary API
-Источник: bugreport.txt :contentReference[oaicite:0]{index=0}
 
 ---
 
@@ -38,3 +37,4 @@ GET /search.json?q=a
 
 **Severity:** Low  
 **Тип дефекта:** Undocumented Feature / API Specification Gap
+

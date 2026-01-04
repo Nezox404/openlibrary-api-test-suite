@@ -11,7 +11,6 @@
 ```
 openlibrary-api-testing/
 ├── testcases.md
-├── results.md
 ├── bugreport.md
 ├── analysis.md
 └── README.md
@@ -53,7 +52,7 @@ openlibrary-api-testing/
 
 ## Ключевые дефекты
 
-### BUG‑01 — 500 на спецсимволах
+### BUG1 — 500 на спецсимволах
 
 Запрос:
 
@@ -64,7 +63,7 @@ GET /search.json?q=@#$%^&
 Фактически: `500 Internal Server Error` + HTML stacktrace Python.  
 Ожидание: устойчивый JSON‑ответ.
 
-### BUG‑02 — скрытое бизнес‑правило: `q < 3` даёт 422
+### BUG2 — скрытое бизнес‑правило: `q < 3` даёт 422
 
 Запрос:
 

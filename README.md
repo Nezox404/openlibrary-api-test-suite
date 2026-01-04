@@ -13,6 +13,8 @@ openlibrary-api-testing/
 ├── testcases.md
 ├── bugreport.md
 ├── analysis.md
+├── testplan.md
+├── testreport.md
 └── README.md
 ```
 

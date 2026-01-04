@@ -1,4 +1,4 @@
-# BUGREPORTS — OpenLibrary API
+# BUGREPORT — OpenLibrary API
 
 ---
 
@@ -79,6 +79,7 @@
 Отсутствуют
 
 **Статус (Status):** New  
+
 
 
 

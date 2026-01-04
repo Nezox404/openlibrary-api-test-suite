@@ -2,39 +2,87 @@
 
 ---
 
-## BUG-01 — 500 Internal Error на спецсимволах в параметре q
-Эндпоинт:  
-GET /search.json?q=@#$%^&
+## BUG-01
 
-### Ожидаемо
-- 200 OK  
-- валидный JSON
+**ID / Номер:** BUG-01  
 
-### Фактически
-- 500 Internal Server Error  
-- HTML + stacktrace  
-- Ошибка: "TypeError: conversion from NoneType to Decimal"
+**Название (Summary):** 500 Internal Server Error при использовании спецсимволов в параметре q  
 
-**Severity:** High  
-**Priority:** Medium  
-**Тип дефекта:** Input Validation / API Stability  
+**Описание (Description):**  
+При передаче спецсимволов в параметре запроса q эндпоинт поиска возвращает внутреннюю ошибку сервера.  
+Ошибка приводит к падению Python-бэкенда и утечке stacktrace в ответе.
 
-**Описание:**  
-Спецсимволы вызывают некорректную выборку данных и падение Python-бэкенда.
+**Шаги воспроизведения (Steps to Reproduce):**  
+1. Отправить GET-запрос на эндпоинт поиска.  
+2. В параметре q указать строку со спецсимволами: @#$%^&  
+3. Получить ответ сервера.
+
+**Ожидаемый результат (Expected Result):**  
+- HTTP 200 OK  
+- Валидный JSON-ответ с результатами поиска или пустым массивом.
+
+**Фактический результат (Actual Result):**  
+- HTTP 500 Internal Server Error  
+- HTML-страница с stacktrace  
+- Сообщение об ошибке: TypeError: conversion from NoneType to Decimal
+
+**Приоритет (Priority):** Medium  
+
+**Серьёзность (Severity):** High  
+
+**Окружение (Environment):**  
+- API: OpenLibrary Search API  
+- Эндпоинт: GET /search.json  
+- Параметры: q=@#$%^&  
+- Серверная часть: Python backend
+
+**Прикреплённые файлы (Attachments):**  
+Отсутствуют
+
+**Автор (Reporter):** Не указано  
+
+**Ответственный (Assignee):** Не назначен  
+
+**Статус (Status):** New  
 
 ---
 
-## BUG-02 — Несоответствие ожиданий: длина q < 3 → 422
-Эндпоинт:  
-GET /search.json?q=a
+## BUG-02
 
-### Ожидаемо
-- 200 OK
+**ID / Номер:** BUG-02  
 
-### Фактически
-- 422 Unprocessable Entity  
-- Error: "Query too short, must be at least 3 characters"
+**Название (Summary):** Возврат 422 при длине параметра q менее 3 символов  
 
-**Severity:** Low  
-**Тип дефекта:** Undocumented Feature / API Specification Gap
+**Описание (Description):**  
+При передаче строки длиной менее 3 символов в параметре q API возвращает ошибку 422,  
+при этом данное ограничение не описано в спецификации.
+
+**Шаги воспроизведения (Steps to Reproduce):**  
+1. Отправить GET-запрос на эндпоинт поиска.  
+2. В параметре q указать строку из одного символа, например: a  
+3. Получить ответ сервера.
+
+**Ожидаемый результат (Expected Result):**  
+- HTTP 200 OK  
+- Корректный JSON-ответ.
+
+**Фактический результат (Actual Result):**  
+- HTTP 422 Unprocessable Entity  
+- Сообщение об ошибке: Query too short, must be at least 3 characters
+
+**Приоритет (Priority):** Low  
+
+**Серьёзность (Severity):** Low  
+
+**Окружение (Environment):**  
+- API: OpenLibrary Search API  
+- Эндпоинт: GET /search.json  
+- Параметры: q=a
+
+**Прикреплённые файлы (Attachments):**  
+Отсутствуют
+
+**Статус (Status):** New  
+
+
 
